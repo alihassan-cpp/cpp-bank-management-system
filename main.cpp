@@ -227,6 +227,24 @@ public:
 
         return false;
     }
+    void checkBalance() {
+
+        int accNo;
+
+        cout << "\nEnter Account Number: ";
+        cin >> accNo;
+
+        for (auto& a : accounts) {
+
+            if (a.getAccountNumber() == accNo) {
+
+                cout << "Current Balance: " << a.getBalance() << endl;
+                return;
+            }
+        }
+
+        cout << "Account not found.\n";
+    }
 };
 
 int main() {
@@ -244,7 +262,8 @@ int main() {
         cout << "4. Withdraw Money\n";
         cout << "5. Search Account\n";
         cout << "6. Delete Account\n";
-        cout << "7. Exit\n";
+        cout << "7. Check Balance\n";
+        cout << "8. Exit\n";
 
         cout << "Enter choice: ";
         cin >> choice;
@@ -273,7 +292,11 @@ int main() {
         case 6:
             bank.deleteAccount();
             break;
-        case 7: 
+        case 7:
+            bank.checkBalance();
+            break;
+
+        case 8: 
             cout << "Exiting program...\n";
             return 0;
       
