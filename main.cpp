@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+#include <fstream>
 using namespace std;
 
 class Account {
@@ -20,7 +20,13 @@ public:
     int getAccountNumber() {
         return accountNumber;
     }
+    string getName() {
+        return name;
+    }
 
+    double getBalance() {
+        return balance;
+    }
     void deposit(double amount) {
         balance += amount;
         cout << "Deposit successful.\n";
@@ -68,7 +74,7 @@ public:
         cin >> balance;
 
         accounts.push_back(Account(accNo, name, balance));
-
+        saveToFile();
         cout << "\nAccount created successfully.\n";
     }
     void displayAccounts() {
@@ -156,7 +162,7 @@ public:
             if (it->getAccountNumber() == accNo) {
 
                 accounts.erase(it);
-
+                saveToFile();
                 cout << "Account deleted successfully.\n";
                 return;
             }
@@ -164,11 +170,40 @@ public:
 
         cout << "Account not found.\n";
     }
+    void saveToFile() {
+
+        ofstream file("accounts.txt");
+
+        for (auto& a : accounts) {
+
+            file << a.getAccountNumber() << " "
+                << a.getName() << " "
+                << a.getBalance() << endl;
+        }
+
+        file.close();
+    }
+    void loadFromFile() {
+
+        ifstream file("accounts.txt");
+
+        int accNo;
+        string name;
+        double balance;
+
+        while (file >> accNo >> name >> balance) {
+
+            accounts.push_back(Account(accNo, name, balance));
+        }
+
+        file.close();
+    }
 };
 
 int main() {
 
     Bank bank;
+    bank.loadFromFile();
     int choice;
 
     while (true) {
