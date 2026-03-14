@@ -126,6 +126,24 @@ public:
 
         cout << "Account not found.\n";
     }
+    void searchAccount() {
+
+        int accNo;
+
+        cout << "\nEnter Account Number: ";
+        cin >> accNo;
+
+        for (auto& a : accounts) {
+            if (a.getAccountNumber() == accNo) {
+
+                cout << "\nAccount Found:\n";
+                a.display();
+                return;
+            }
+        }
+
+        cout << "Account not found.\n";
+    }
 };
 
 int main() {
@@ -140,7 +158,8 @@ int main() {
         cout << "2. Display Accounts\n";
         cout << "3. Deposit Money\n";
         cout << "4. Withdraw Money\n";
-        cout << "5. Exit\n";
+        cout << "5. Search Account\n";
+        cout << "6. Exit\n";
 
         cout << "Enter choice: ";
         cin >> choice;
@@ -163,10 +182,14 @@ int main() {
             bank.withdrawMoney();
             break;
 
-        case 5: 
+        case 5:
+            bank.searchAccount();
+            break;
+
+        case 6: 
             cout << "Exiting program...\n";
             return 0;
-        
+      
         default: 
             cout << "Invalid choice.\n";
             
