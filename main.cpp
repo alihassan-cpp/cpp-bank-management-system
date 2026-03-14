@@ -28,11 +28,23 @@ public:
         return balance;
     }
     void deposit(double amount) {
+
+        if (amount <= 0) {
+            cout << "Invalid amount.\n";
+            return;
+        }
+
         balance += amount;
         cout << "Deposit successful.\n";
     }
 
     void withdraw(double amount) {
+
+        if (amount <= 0) {
+            cout << "Invalid amount.\n";
+            return;
+        }
+
         if (amount > balance) {
             cout << "Insufficient balance.\n";
         }
