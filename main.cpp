@@ -65,16 +65,23 @@ public:
         cout << "\nEnter Account Number: ";
         cin >> accNo;
 
-        cin.ignore();   
+        if (accountExists(accNo)) {
+            cout << "Error: Account number already exists.\n";
+            return;
+        }
+
+        cin.ignore();
 
         cout << "Enter Name: ";
-        getline(cin, name);   
+        getline(cin, name);
 
         cout << "Enter Initial Balance: ";
         cin >> balance;
 
         accounts.push_back(Account(accNo, name, balance));
+
         saveToFile();
+
         cout << "\nAccount created successfully.\n";
     }
     void displayAccounts() {
@@ -197,6 +204,16 @@ public:
         }
 
         file.close();
+    }
+    bool accountExists(int accNo) {
+
+        for (auto& a : accounts) {
+            if (a.getAccountNumber() == accNo) {
+                return true;
+            }
+        }
+
+        return false;
     }
 };
 
