@@ -144,6 +144,26 @@ public:
 
         cout << "Account not found.\n";
     }
+    void deleteAccount() {
+
+        int accNo;
+
+        cout << "\nEnter Account Number to delete: ";
+        cin >> accNo;
+
+        for (auto it = accounts.begin(); it != accounts.end(); it++) {
+
+            if (it->getAccountNumber() == accNo) {
+
+                accounts.erase(it);
+
+                cout << "Account deleted successfully.\n";
+                return;
+            }
+        }
+
+        cout << "Account not found.\n";
+    }
 };
 
 int main() {
@@ -159,7 +179,8 @@ int main() {
         cout << "3. Deposit Money\n";
         cout << "4. Withdraw Money\n";
         cout << "5. Search Account\n";
-        cout << "6. Exit\n";
+        cout << "6. Delete Account\n";
+        cout << "7. Exit\n";
 
         cout << "Enter choice: ";
         cin >> choice;
@@ -185,8 +206,10 @@ int main() {
         case 5:
             bank.searchAccount();
             break;
-
-        case 6: 
+        case 6:
+            bank.deleteAccount();
+            break;
+        case 7: 
             cout << "Exiting program...\n";
             return 0;
       
