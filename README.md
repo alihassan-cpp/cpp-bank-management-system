@@ -9,9 +9,9 @@ The system allows users to create bank accounts, manage account information, and
 - Create bank account
 - Display all accounts
 - Deposit money
-- Withdraw money (coming soon)
-- Search account (coming soon)
-- Delete account (coming soon)
+- Withdraw money
+- Search account
+- Delete account
 
 ## Concepts Used
 - Object-Oriented Programming
